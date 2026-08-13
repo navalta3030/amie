@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thank You — Anchored Foundations LLC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #000;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 24px;
+      text-align: center;
+      -webkit-font-smoothing: antialiased;
+    }
+    .check {
+      width: 56px;
+      height: 56px;
+      border: 2px solid #000;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 32px;
+    }
+    .check svg { width: 24px; height: 24px; }
+    h1 {
+      font-size: clamp(1.75rem, 5vw, 2.75rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 16px;
+    }
+    p {
+      font-size: 1rem;
+      color: #555;
+      max-width: 440px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+    }
+    .actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+    a {
+      display: inline-block;
+      font-family: inherit;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      padding: 13px 26px;
+      border: 2px solid #000;
+      transition: background 0.2s, color 0.2s;
+    }
+    a.primary { background: #000; color: #fff; }
+    a.primary:hover { background: #fff; color: #000; }
+    a.outline { background: transparent; color: #000; }
+    a.outline:hover { background: #000; color: #fff; }
+    .brand {
+      margin-top: 64px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <div class="check">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  </div>
+  <h1>Request Received.</h1>
+  <p>Thank you for reaching out! We'll be in touch within 48 hours to confirm your complimentary 30-minute consultation.</p>
+  <div class="actions">
+    <a href="https://navalta3030.github.io/amie/" class="primary">Back to Home</a>
+    <a href="https://www.instagram.com/anchored.foundations/" target="_blank" rel="noopener" class="outline">Follow on Instagram</a>
+  </div>
+  <p class="brand">Anchored Foundations LLC</p>
+</body>
+</html>

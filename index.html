@@ -462,27 +462,48 @@
 
     .insta-placeholder {
       aspect-ratio: 1;
-      background: var(--gray-light);
-      border: 1px solid var(--gray-mid);
+      background: var(--black);
+      border: 1px solid var(--black);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      color: var(--gray-text);
-      font-size: 0.75rem;
-      letter-spacing: 0.1em;
+      gap: 10px;
+      color: var(--white);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      font-weight: 500;
-      transition: background 0.2s;
+      font-weight: 600;
+      text-decoration: none;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.2s, color 0.2s;
     }
 
-    .insta-placeholder:hover { background: var(--gray-mid); }
+    .insta-placeholder:hover {
+      background: var(--white);
+      color: var(--black);
+    }
+
+    .insta-placeholder:hover svg { stroke: var(--black); }
+    .insta-placeholder:hover .insta-dot { fill: var(--black); }
 
     .insta-placeholder svg {
-      width: 28px;
-      height: 28px;
-      opacity: 0.3;
+      width: 32px;
+      height: 32px;
+      stroke: var(--white);
+      transition: stroke 0.2s;
+    }
+
+    .insta-placeholder .insta-dot {
+      fill: var(--white);
+      transition: fill 0.2s;
+    }
+
+    .insta-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      opacity: 0.7;
     }
 
     .insta-cta {
@@ -899,30 +920,33 @@
         </a>
       </div>
       <div class="insta-grid">
-        <div class="insta-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <a href="https://www.instagram.com/anchored.foundations/" target="_blank" rel="noopener" class="insta-placeholder" aria-label="View our recent events on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            <circle cx="17.5" cy="6.5" r="1.2" class="insta-dot"/>
           </svg>
-          <span>Recent Event</span>
-        </div>
-        <div class="insta-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <span>Recent Events</span>
+          <span class="insta-label">View on Instagram →</span>
+        </a>
+        <a href="https://www.instagram.com/anchored.foundations/" target="_blank" rel="noopener" class="insta-placeholder" aria-label="View our workshop recaps on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            <circle cx="17.5" cy="6.5" r="1.2" class="insta-dot"/>
           </svg>
-          <span>Workshop Recap</span>
-        </div>
-        <div class="insta-placeholder">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <span>Workshop Recaps</span>
+          <span class="insta-label">View on Instagram →</span>
+        </a>
+        <a href="https://www.instagram.com/anchored.foundations/" target="_blank" rel="noopener" class="insta-placeholder" aria-label="View behind the scenes on Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
             <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+            <circle cx="17.5" cy="6.5" r="1.2" class="insta-dot"/>
           </svg>
           <span>Behind the Scenes</span>
-        </div>
+          <span class="insta-label">View on Instagram →</span>
+        </a>
       </div>
       <div class="insta-cta">
         <a href="https://www.instagram.com/anchored.foundations/" target="_blank" rel="noopener" class="btn-primary">
@@ -958,15 +982,31 @@
             </div>
           </div>
         </div>
-        <form class="contact-form" id="consultationForm" onsubmit="handleSubmit(event)" novalidate>
+        <!--
+          FormSubmit.co — free, no signup needed.
+          Replace the email below with YOUR real address.
+          The FIRST submission triggers a one-time confirmation email from FormSubmit — click it to activate.
+          After that, every submission lands in your inbox automatically.
+        -->
+        <form
+          class="contact-form"
+          action="https://formsubmit.co/hello@anchored-foundations.com"
+          method="POST"
+        >
+          <!-- FormSubmit config fields -->
+          <input type="hidden" name="_subject" value="New Consultation Request — Anchored Foundations" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_next" value="https://navalta3030.github.io/amie/thankyou.html" />
+          <input type="text" name="_honey" style="display:none" />
+
           <div class="form-row">
             <div class="form-group">
               <label for="firstName">First Name</label>
-              <input type="text" id="firstName" name="firstName" placeholder="Jane" required />
+              <input type="text" id="firstName" name="First Name" placeholder="Jane" required />
             </div>
             <div class="form-group">
               <label for="lastName">Last Name</label>
-              <input type="text" id="lastName" name="lastName" placeholder="Doe" required />
+              <input type="text" id="lastName" name="Last Name" placeholder="Doe" required />
             </div>
           </div>
           <div class="form-group full">
@@ -975,31 +1015,30 @@
           </div>
           <div class="form-group full">
             <label for="eventType">Event Type</label>
-            <select id="eventType" name="eventType" required>
+            <select id="eventType" name="Service" required>
               <option value="" disabled selected>Select your event type…</option>
-              <option value="corporate">Corporate Event / Conference</option>
-              <option value="faith">Community / Faith-Based Event</option>
-              <option value="workshop">Workshop / Team Experience</option>
-              <option value="vendor">Vendor / Expo Management</option>
-              <option value="dayof">Day-of Coordination</option>
-              <option value="partial">Partial Planning</option>
-              <option value="full">Full-Service Planning</option>
-              <option value="strategy">Event Strategy Session</option>
-              <option value="other">Other / Not Sure Yet</option>
+              <option>Corporate Event / Conference</option>
+              <option>Community / Faith-Based Event</option>
+              <option>Workshop / Team Experience</option>
+              <option>Vendor / Expo Management</option>
+              <option>Day-of Coordination</option>
+              <option>Partial Planning</option>
+              <option>Full-Service Planning</option>
+              <option>Event Strategy Session</option>
+              <option>Other / Not Sure Yet</option>
             </select>
           </div>
           <div class="form-group full">
             <label for="eventDate">Estimated Event Date</label>
-            <input type="date" id="eventDate" name="eventDate" />
+            <input type="date" id="eventDate" name="Event Date" />
           </div>
           <div class="form-group full">
             <label for="message">Tell Us About Your Event</label>
-            <textarea id="message" name="message" placeholder="Share your vision, goals, expected guest count, venue ideas, or anything else you'd like us to know…"></textarea>
+            <textarea id="message" name="Message" placeholder="Share your vision, goals, expected guest count, venue ideas, or anything else you'd like us to know…"></textarea>
           </div>
           <div class="form-submit">
-            <button type="submit" class="btn-primary" id="submitBtn">Submit Consultation Request</button>
+            <button type="submit" class="btn-primary">Submit Consultation Request</button>
           </div>
-          <div id="formMsg" style="display:none;font-size:0.85rem;padding:14px 16px;border:1px solid;"></div>
         </form>
       </div>
     </div>
@@ -1054,52 +1093,6 @@
       }
     });
 
-    // Form submission — mailto (works with no backend or signup)
-    // Update the email address below to your real address
-    const CONTACT_EMAIL = 'hello@anchored-foundations.com';
-
-    function handleSubmit(e) {
-      e.preventDefault();
-      const form = e.target;
-      const btn = document.getElementById('submitBtn');
-      const msg = document.getElementById('formMsg');
-
-      const firstName = form.firstName.value.trim();
-      const lastName  = form.lastName.value.trim();
-      const email     = form.email.value.trim();
-      const eventType = form.eventType.options[form.eventType.selectedIndex].text;
-      const date      = form.eventDate.value || 'Not specified';
-      const message   = form.message.value.trim();
-
-      if (!firstName || !lastName || !email || !form.eventType.value) {
-        showMsg(msg, 'Please fill in all required fields.', false);
-        return;
-      }
-
-      const subject = encodeURIComponent(`Consultation Request — ${firstName} ${lastName}`);
-      const body = encodeURIComponent(
-        `Name: ${firstName} ${lastName}\nEmail: ${email}\nEvent Type: ${eventType}\nEvent Date: ${date}\n\nMessage:\n${message}`
-      );
-
-      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
-
-      showMsg(msg, 'Your email app should open shortly with a pre-filled message. If not, DM us on Instagram @anchored.foundations.', true);
-      btn.textContent = 'Request Sent!';
-      btn.disabled = true;
-
-      setTimeout(() => {
-        btn.textContent = 'Submit Consultation Request';
-        btn.disabled = false;
-      }, 5000);
-    }
-
-    function showMsg(el, text, success) {
-      el.textContent = text;
-      el.style.display = 'block';
-      el.style.borderColor = success ? '#000' : '#c00';
-      el.style.color      = success ? '#000' : '#c00';
-      el.style.background = success ? '#f4f4f4' : '#fff0f0';
-    }
   </script>
 </body>
 </html>
