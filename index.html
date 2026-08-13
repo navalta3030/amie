@@ -946,8 +946,15 @@
               <a href="https://www.anchored-foundations.com" target="_blank" rel="noopener">anchored-foundations.com</a>
             </div>
             <div class="contact-detail">
-              <span>Instagram</span>
-              <a href="https://www.instagram.com/anchored.foundations/" target="_blank" rel="noopener">@anchored.foundations</a>
+              <span>Prefer to DM?</span>
+              <a href="https://www.instagram.com/anchored.foundations/" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:8px;">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                  <circle cx="12" cy="12" r="4"/>
+                  <circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/>
+                </svg>
+                @anchored.foundations
+              </a>
             </div>
           </div>
         </div>
@@ -1047,56 +1054,50 @@
       }
     });
 
-    // Form submission — Formspree
-    // Replace YOUR_FORM_ID below after signing up free at https://formspree.io
-    const FORMSPREE_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+    // Form submission — mailto (works with no backend or signup)
+    // Update the email address below to your real address
+    const CONTACT_EMAIL = 'hello@anchored-foundations.com';
 
-    async function handleSubmit(e) {
+    function handleSubmit(e) {
       e.preventDefault();
       const form = e.target;
       const btn = document.getElementById('submitBtn');
       const msg = document.getElementById('formMsg');
 
-      // Basic client-side validation
-      const required = ['firstName', 'lastName', 'email', 'eventType'];
-      for (const field of required) {
-        if (!form[field].value.trim()) {
-          showMsg(msg, 'Please fill in all required fields.', false);
-          return;
-        }
+      const firstName = form.firstName.value.trim();
+      const lastName  = form.lastName.value.trim();
+      const email     = form.email.value.trim();
+      const eventType = form.eventType.options[form.eventType.selectedIndex].text;
+      const date      = form.eventDate.value || 'Not specified';
+      const message   = form.message.value.trim();
+
+      if (!firstName || !lastName || !email || !form.eventType.value) {
+        showMsg(msg, 'Please fill in all required fields.', false);
+        return;
       }
 
-      btn.textContent = 'Sending…';
+      const subject = encodeURIComponent(`Consultation Request — ${firstName} ${lastName}`);
+      const body = encodeURIComponent(
+        `Name: ${firstName} ${lastName}\nEmail: ${email}\nEvent Type: ${eventType}\nEvent Date: ${date}\n\nMessage:\n${message}`
+      );
+
+      window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`;
+
+      showMsg(msg, 'Your email app should open shortly with a pre-filled message. If not, DM us on Instagram @anchored.foundations.', true);
+      btn.textContent = 'Request Sent!';
       btn.disabled = true;
 
-      try {
-        const res = await fetch(FORMSPREE_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Accept': 'application/json' },
-          body: new FormData(form)
-        });
-
-        if (res.ok) {
-          showMsg(msg, 'Thank you! We\'ll be in touch within 48 hours to confirm your consultation.', true);
-          form.reset();
-        } else {
-          const data = await res.json();
-          const errors = data.errors ? data.errors.map(e => e.message).join(', ') : 'Submission failed. Please try again.';
-          showMsg(msg, errors, false);
-        }
-      } catch {
-        showMsg(msg, 'Network error — please try again or email us directly at hello@anchored-foundations.com.', false);
-      } finally {
+      setTimeout(() => {
         btn.textContent = 'Submit Consultation Request';
         btn.disabled = false;
-      }
+      }, 5000);
     }
 
     function showMsg(el, text, success) {
       el.textContent = text;
       el.style.display = 'block';
       el.style.borderColor = success ? '#000' : '#c00';
-      el.style.color = success ? '#000' : '#c00';
+      el.style.color      = success ? '#000' : '#c00';
       el.style.background = success ? '#f4f4f4' : '#fff0f0';
     }
   </script>
